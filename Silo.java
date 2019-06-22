@@ -74,6 +74,7 @@ public class Silo extends Recipiente //throws Exception
     public Ingrediente getTipoIngredienteAlmacenado()
     {
         // put your code here
+    	System.out.println("el recipiente tiene "+ingrediente.name() );
         return this.ingrediente;
     }
 }
