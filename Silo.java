@@ -26,9 +26,27 @@ public class Silo extends Recipiente //throws Exception
             throw new CapacidadExcedidaException();            
         }
         
+        //a esto no lo valida ningun test
         if (capacidadASetear<=0 ){
             throw new Exception();
         }
+        
+        //Ingrediente ingredientesValidos[] =Ingrediente.values();
+        int ingredienteValido=0;	
+	//verifico que el ingredite a poner sea valido
+	for(Ingrediente ing: Ingrediente.values()) {
+	    if( ing.equals(ingQueTendra)  )
+		ingredienteValido++;
+        }
+		
+	if (ingredienteValido>0) {
+	    this.ingrediente=ingQueTendra;		        
+	}
+	else{
+	    throw new Exception();	
+	}
+        
+        
         this.ingrediente=ingQueTendra;
         this.capacidadMaxima=capacidadASetear;
         this.cantidadDisponible=0;
