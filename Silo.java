@@ -1,10 +1,3 @@
-
-/**
- * Write a description of class Silo here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Silo extends Recipiente //throws Exception
 {
     // instance variables - replace the example below with your own
@@ -19,21 +12,15 @@ public class Silo extends Recipiente //throws Exception
      * constructor A: 2 parametros
      * Constructor for objects of class Silo 
      */
-    public Silo(Ingrediente ingQueTendra, int capacidadASetear) throws Exception
-    {
-        // initialise instance variables
-        if ( capacidadASetear> CAPACIDAD_MAXIMA_DEFAULT){
-            throw new CapacidadExcedidaException();            
+    public Silo(Ingrediente ingQueTendra, int capacidadASetear) throws Exception{
+        
+        //Validacion del primer argumento
+        if (  capacidadASetear<=0 || capacidadASetear> CAPACIDAD_MAXIMA_DEFAULT){
+            throw new IllegalArgumentException("cantidad negativa");            
         }
         
-        //a esto no lo valida ningun test
-        if (capacidadASetear<=0 ){
-            throw new Exception();
-        }
-        
-        //Ingrediente ingredientesValidos[] =Ingrediente.values();
+        //Validacion del segundo argumento
         int ingredienteValido=0;	
-	//verifico que el ingredite a poner sea valido
 	for(Ingrediente ing: Ingrediente.values()) {
 	    if( ing.equals(ingQueTendra)  )
 		ingredienteValido++;
@@ -43,11 +30,10 @@ public class Silo extends Recipiente //throws Exception
 	    this.ingrediente=ingQueTendra;		        
 	}
 	else{
-	    throw new Exception();	
+	    throw new IllegalArgumentException();	
 	}
         
-        
-        this.ingrediente=ingQueTendra;
+	this.ingrediente=ingQueTendra; // esto ya esta dentro del if de la linea 36
         this.capacidadMaxima=capacidadASetear;
         this.cantidadDisponible=0;
         
@@ -59,8 +45,20 @@ public class Silo extends Recipiente //throws Exception
      */
     public Silo(Ingrediente ingQueTendra)
     {
-        // initialise instance variables
-        this.ingrediente=ingQueTendra;
+        //Validacion del  argumento  "ingQueTendra"
+        int ingredienteValido=0;	
+	for(Ingrediente ing: Ingrediente.values()) {
+	    if( ing.equals(ingQueTendra)  )
+		ingredienteValido++;
+        }
+		
+	if (ingredienteValido>0) {
+	    this.ingrediente=ingQueTendra;		        
+	}
+	else{
+	    throw new IllegalArgumentException();	
+	}
+        
         this.capacidadMaxima=CAPACIDAD_MAXIMA_DEFAULT;
         this.cantidadDisponible=0;
     }
@@ -74,7 +72,7 @@ public class Silo extends Recipiente //throws Exception
     public Ingrediente getTipoIngredienteAlmacenado()
     {
         // put your code here
-    	System.out.println("el recipiente tiene "+ingrediente.name() );
+    	
         return this.ingrediente;
     }
 }
