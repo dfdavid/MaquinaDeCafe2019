@@ -1,6 +1,5 @@
 *.asv
-Silo.class
-*.class
+.class
 *.ctxt
 *.html
 *.txt
