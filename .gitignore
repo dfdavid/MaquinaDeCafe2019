@@ -1,5 +1,5 @@
 *.asv
 *.class
-*.ctxt
+.ctxt
 Silo.class
 *.class
