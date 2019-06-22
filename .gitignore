@@ -4,3 +4,10 @@
 Silo.class
 *.class
 *.ctxt
+*.html
+*.txt
+doc/package-list
+*.js
+*.css
+*.class
+*.class
