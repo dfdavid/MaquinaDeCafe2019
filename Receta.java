@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
+import java.lang.StringBuilder; 
 
 public class Receta {
     protected Map<Ingrediente, Integer> ingredientes;
@@ -29,7 +30,7 @@ public class Receta {
             }
         }
         //validar cantidad
-        if (cantidad<0 || cantidad > Recipiente.CAPACIDAD_MAXIMA_DEFAULT ){
+        if (cantidad<=0 || cantidad > 2000 ){
             throw new IllegalArgumentException("Cantidad de ingrediente no valida");
         }
         //si el ingrediente es valido se agrega a la receta
@@ -42,6 +43,10 @@ public class Receta {
         }
     }
     
+    
+    
+    
+    
     /**
      * Devuelve el mapa de ingredientes y cantidades de esta receta
      * 
@@ -49,8 +54,13 @@ public class Receta {
      */
     public Map<Ingrediente, Integer> getMapaDeIngredientes(){
         //TODO implementar el metodo
-        return null;
+        return ingredientes;
     }
+    
+    
+    
+    
+    
     
     /**
      * Devuelve la lista de ingredientes de esta receta
@@ -59,8 +69,22 @@ public class Receta {
      */
     public List<Ingrediente> getIngredientes(){
         //TODO implementar el metodo
-        return null;
+        // ArrayList ingredientesNecesarios = new ArrayList<Ingrediente>();
+        // for ( Ingrediente ingPresente: ingredientes  ){
+            // ingredientesNecesarios.add( ingredientes.firstKey()  );
+            // ingredientes.remove(ingredientes.firstKey());
+        // }
+        
+    	ArrayList<Ingrediente> listaIngredientes;
+    	listaIngredientes = new ArrayList<> (ingredientes.keySet() );
+    	return listaIngredientes;
     }
+    
+   
+    
+    
+    
+    
     
     /**
      * Retorna la cantidad del ingrediente solicitado para esta
@@ -69,11 +93,21 @@ public class Receta {
      * @param ingrediente el ingrediente solicitado
      * @return la cantidad de ingrediente requerida por la receta
      */
-    public int getCantidadDeIngrediente (Ingrediente ingrediente){
+    public int getCantidadDeIngrediente (Ingrediente ingConsultado){
         //TODO implementar el metodo
-        return -1;
+        int cantidad=0;
+    	if (ingredientes.containsKey(ingConsultado)  ){
+    		cantidad=ingredientes.get(ingConsultado);
+    	}
+    	else {
+    		cantidad=0;
+    	}
+    	return cantidad;
     }
 
+   
+    
+    
     /**
      * Retorna un String con el siguiente formato:
      * 
@@ -86,7 +120,18 @@ public class Receta {
      */
     public String toString(){
         //TODO implementar el metodo
-        return "";
+    	ArrayList<Ingrediente> listaIng= new ArrayList<>( ingredientes.keySet() );
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("Receta: ");
+    	for ( Ingrediente x:  listaIng ) {
+    		sb.append( x );
+    		sb.append("[" );
+    		sb.append( ingredientes.get(x) );
+    		sb.append("]" );
+    		sb.append( ";" );
+    			
+    	}
+    	return sb.toString(); //"Receta: AZUCAR[5];AGUA[150];CAFE[15]";
 
     }
     
