@@ -20,6 +20,8 @@ public class Receta {
      */
     public void agregarIngrediente(Ingrediente ing, Integer cantidad){
         //TODO implementar el metodo
+
+        ingredientes.put( ing , cantidad);
     }
     
     /**
