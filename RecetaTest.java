@@ -16,6 +16,12 @@ public class RecetaTest
     private MaquinaDeCafe maquinaD1;
     private Receta capu;
 
+    
+    
+    
+    
+    
+
     /**
      * Default constructor for test class RecetaTest
      */
@@ -33,6 +39,10 @@ public class RecetaTest
     {
         maquinaD1 = new MaquinaDeCafe();
         capu = new Receta();
+        capu.agregarIngrediente(Ingrediente.CAFE, 40);
+        //capu.getIngredientes();
+        capu.agregarIngrediente(Ingrediente.AGUA, 10);
+        capu.getIngredientes();
     }
 
     /**

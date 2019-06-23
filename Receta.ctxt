@@ -2,7 +2,7 @@
 comment0.target=Receta
 comment1.params=
 comment1.target=Receta()
-comment2.params=ing\ cantidad
+comment2.params=ingredienteNuevo\ cantidad
 comment2.target=void\ agregarIngrediente(Ingrediente,\ java.lang.Integer)
 comment2.text=\r\n\ Agrega\ un\ ingrediente\ a\ la\ receta\r\n\ \r\n\ @param\ ing\ el\ Ingrediente\ a\ agregar\ a\ la\ receta\r\n\ @param\ cantidad\ la\ cantidad\ de\ ingrediente\ a\ agregar\ a\ la\ receta\r\n\ @throws\ IllegalArgumentException\ cuando\ no\ hay\ ingrediente\ o\ la\r\n\ cantidad\ a\ agregar\ no\ es\ valida\ (ej.\ valor\ negativo)\r\n
 comment3.params=

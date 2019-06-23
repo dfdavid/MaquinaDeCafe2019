@@ -18,10 +18,28 @@ public class Receta {
      * @throws IllegalArgumentException cuando no hay ingrediente o la
      * cantidad a agregar no es valida (ej. valor negativo)
      */
-    public void agregarIngrediente(Ingrediente ing, Integer cantidad){
+    public void agregarIngrediente(Ingrediente ingredienteNuevo, Integer cantidad){
         //TODO implementar el metodo
 
-        ingredientes.put( ing , cantidad);
+        //validar ingrediente
+        int ingredientValido=0;
+        for ( Ingrediente ing: Ingrediente.values() ){
+            if( ing.equals(ingredienteNuevo) ) {
+                ingredientValido++;
+            }
+        }
+        //validar cantidad
+        if (cantidad<0 || cantidad > Recipiente.CAPACIDAD_MAXIMA_DEFAULT ){
+            throw new IllegalArgumentException("Cantidad de ingrediente no valida");
+        }
+        //si el ingrediente es valido se agrega a la receta
+        if (ingredientValido>0){
+            ingredientes.put( ingredienteNuevo , cantidad);
+        }
+        //si el ingrediente es invalido se arroja una excepcion
+        else{
+            throw new IllegalArgumentException("Ingrediente no valido");
+        }
     }
     
     /**
