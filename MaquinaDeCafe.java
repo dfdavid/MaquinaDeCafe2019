@@ -95,11 +95,24 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
      * extraer la cantidad requerida de cada ingrediente o no
      * hay receta de ese producto
      */
-    public void prepararProducto(Producto seleccion) throws ProductoException {
+    public void prepararProducto(Producto prooo) throws Exception, ProductoException {
         //TODO implementar el metodo
         //Verifico si el producto es valido. Si no, arroja ProductoException
+        //compruebo si el producto es valido
+        boolean productoValido=false;
+        for ( Producto prodEnum:  Producto.values()){
+                   if( prodEnum.equals(prooo)  ){
+                       productoValido=true;
+                   }
+            }     
         
-        //cambia la variale "seleccion"
+        if (productoValido != true){
+                throw new Exception("disparada en metodo prepararProducto");
+        }
+             
+        //leer la variale "seleccion"
+        this.getSeleccion();
+        
         
         //llamo al metodo "operar()"
         
@@ -262,12 +275,19 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
         }
         
         // - verifica si puede despachar el producto seleccionado
+        // leo la variable seleccion
+        this.getSeleccion();
+        Ingrediente listaActual= this.recetas.get;
+       
         
         // - cambia el Estado de la maquina a OPERANDO
+        this.estado=Estado.OPERANDO;
         
         // - despacha el producto seleccionado
         
+        
         // - incrementa la cuenta de productos despachados
+        this.totalProductosServidos++;
                 
     }
 
@@ -275,10 +295,10 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
     public void restablecer() {
         //TODO implementar el metodo
         // - cambia el Estado de la maquina a LISTO
-        
+        this.estado=Estado.LISTO;
         
         // - establece la seleccion de producto en null    
-        
+        this.seleccion=null;
     }
 
     @Override

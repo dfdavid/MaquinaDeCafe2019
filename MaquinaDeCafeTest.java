@@ -23,6 +23,11 @@ public class MaquinaDeCafeTest
     
     
 
+    
+    
+    
+    
+
     /**
      * Default constructor for test class MaquinaDeCafeTest
      */
@@ -58,6 +63,13 @@ public class MaquinaDeCafeTest
         capu.agregarIngrediente(Ingrediente.AZUCAR, 3);
         maquinaD1.getEstado();
         maquinaD1.encender();
+        try{
+        maquinaD1.setSeleccion(Producto.EXPRESO);
+        }
+        catch(Exception e){
+            //nada
+        }
+        
     }
 
     /**
