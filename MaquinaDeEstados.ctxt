@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MaquinaDeEstados
-comment0.text=\r\n\ Esta\ inferfaz\ representa\ una\ maquina\ de\ estados.\ Las\ siguientes\ son\ transiciones\ validas\r\n\ entre\ estados\r\n\ \r\n\ APAGADO\ ->\ LISTO\r\n\ LISTO\ ->\ APAGADO\r\n\ LISTO\ ->\ OPERANDO\r\n\ LISTO\ ->\ FALLA\r\n\ LISTO\ ->\ MANTENIMIENTO\r\n\ MANTENIMIENTO\ ->\ LISTO\r\n\ OPERANDO\ ->\ LISTO\r\n\ OPERANDO\ ->\ FALLA\r\n
+comment0.text=\r\n\ Esta\ inferfaz\ representa\ una\ maquina\ de\ estados.\ Las\ siguientes\ son\ transiciones\ validas\r\n\ entre\ estados\r\n\ \r\n\ APAGADO\ ->\ LISTO\r\n\ LISTO\ ->\ APAGADO\r\n\ LISTO\ ->\ OPERANDO\r\n\ LISTO\ ->\ FALLA\ //--->\ este\ no\ esta\ en\ el\ enum\r\n\ LISTO\ ->\ MANTENIMIENTO\r\n\ MANTENIMIENTO\ ->\ LISTO\r\n\ OPERANDO\ ->\ LISTO\r\n\ OPERANDO\ ->\ FALLA\ \ //--->\ este\ no\ esta\ en\ el\ enum\r\n
 comment1.params=
 comment1.target=void\ operar()
 comment1.text=\r\n\ Cambia\ al\ estado\ a\ OPERANDO\ \ \r\n\ \r\n\ @throws\ IllegalStateException\ cuando\ se\ intenta\ operar\ desde\ un\ estado\ no\ valido\r\n

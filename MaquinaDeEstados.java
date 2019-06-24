@@ -5,11 +5,11 @@
  * APAGADO -> LISTO
  * LISTO -> APAGADO
  * LISTO -> OPERANDO
- * LISTO -> FALLA
+ * LISTO -> FALLA //---> este no esta en el enum
  * LISTO -> MANTENIMIENTO
  * MANTENIMIENTO -> LISTO
  * OPERANDO -> LISTO
- * OPERANDO -> FALLA
+ * OPERANDO -> FALLA  //---> este no esta en el enum
  */
 public interface MaquinaDeEstados {
 

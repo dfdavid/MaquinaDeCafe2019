@@ -14,6 +14,9 @@ import org.junit.Test;
 public class MaquinaDeCafeTest
 {
     private MaquinaDeCafe maquinaD1;
+    private Silo silo1agua;
+    private Silo silo1cafe;
+    private Receta capu;
 
     /**
      * Default constructor for test class MaquinaDeCafeTest
@@ -31,6 +34,23 @@ public class MaquinaDeCafeTest
     public void setUp()
     {
         maquinaD1 = new MaquinaDeCafe();
+        silo1agua = new Silo(Ingrediente.AGUA);
+        silo1cafe = new Silo(Ingrediente.CAFE);
+        try{
+            silo1agua.agregar(1500);
+            silo1cafe.agregar(200);
+        }
+        catch (Exception e){
+            System.out.println("fallo al agregar algun ingrediente en algun recip.");
+        }
+        maquinaD1.addRecipiente(silo1cafe);
+        maquinaD1.addRecipiente(silo1agua);
+        capu = new Receta();
+        capu.agregarIngrediente(Ingrediente.CAFE, 40);
+        capu.agregarIngrediente(Ingrediente.LECHE, 40);
+        capu.agregarIngrediente(Ingrediente.CACAO, 20);
+        capu.agregarIngrediente(Ingrediente.AGUA, 100);
+        capu.agregarIngrediente(Ingrediente.AZUCAR, 3);
     }
 
     /**
