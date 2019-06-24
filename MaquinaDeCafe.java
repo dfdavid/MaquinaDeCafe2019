@@ -85,38 +85,42 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
     
 // A PARTIR DE AQUI SON METODOS A MODIFICAR EN EL EXAMEN (NO MODIFICAR LOS ANTERIORIES)
         
-    /**
-     * Ejecuta la receta para el producto especificado, extrayendo
-     * de cada recipiente la cantidad necesaria de ingredientes
-     * para preparar la receta
-     * 
-     * @param el producto seleccionado
-     * @throws ProductoException si por algun motivo no se puede
-     * extraer la cantidad requerida de cada ingrediente o no
-     * hay receta de ese producto
-     */
-    public void prepararProducto(Producto prooo) throws Exception, ProductoException {
-        //TODO implementar el metodo
-        //Verifico si el producto es valido. Si no, arroja ProductoException
-        //compruebo si el producto es valido
-        boolean productoValido=false;
-        for ( Producto prodEnum:  Producto.values()){
-                   if( prodEnum.equals(prooo)  ){
-                       productoValido=true;
-                   }
-            }     
-        
-        if (productoValido != true){
-                throw new Exception("disparada en metodo prepararProducto");
+    	/**
+	 * Ejecuta la receta para el producto especificado, extrayendo
+	 * de cada recipiente la cantidad necesaria de ingredientes
+	 * para preparar la receta
+	 * 
+	 * @param el producto seleccionado
+	 * @throws ProductoException si por algun motivo no se puede
+	 * extraer la cantidad requerida de cada ingrediente
+	 */
+	public void prepararProducto(Producto seleccion) throws ProductoException {
+		//TODO implementar el metodo
+		
+		if (seleccion == null || !recetas.containsKey(seleccion)) {
+            throw new ProductoException("No existe receta para la seleccion " + seleccion);
         }
-             
-        //leer la variale "seleccion"
-        this.getSeleccion();
-        
-        
-        //llamo al metodo "operar()"
-        
-    }
+        Receta r = recetas.get(seleccion);
+        for (Ingrediente ing : r.getIngredientes()) {
+            if (!hayIngredienteDisponible(ing, r.getCantidadDeIngrediente(ing))) {
+                throw new ProductoException("Hay faltantes para la seleccion " + seleccion);
+            }
+        }
+
+        for (Ingrediente ingr : r.getMapaDeIngredientes().keySet()) {
+            for (Recipiente recip : recipientes) {
+                if (recip.getTipoIngredienteAlmacenado() == ingr) {
+                    try {
+                        recip.extraer(r.getMapaDeIngredientes().get(ingr));
+                    } catch (CapacidadExcedidaException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+	
+
+	}
     
     
     
@@ -153,15 +157,15 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
      * ingrediente.
      */
     public Recipiente getRecipiente (Ingrediente ingrediente){
-        //TODO implementar el metodo
-        Recipiente silo=null;
-        if ( recipientes.contains(ingrediente)  ){
-            
+		//TODO implementar el metodo
+		for (Recipiente r : recipientes) {
+            if (ingrediente == r.getTipoIngredienteAlmacenado()) {
+                return r;
+            }
         }
-        
-        
-        return silo;
-    }
+        return null;
+	
+	}
     
     /**
      * Agrega una receta para un producto de la maquina de
@@ -273,18 +277,11 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
         if( this.estado != Estado.LISTO  ){
             throw new IllegalStateException("La maquina no está lista");
         }
-        
-        // - verifica si puede despachar el producto seleccionado
-        // leo la variable seleccion
-        this.getSeleccion();
-        Ingrediente listaActual= this.recetas.get;
-       
+         
         
         // - cambia el Estado de la maquina a OPERANDO
         this.estado=Estado.OPERANDO;
-        
-        // - despacha el producto seleccionado
-        
+             
         
         // - incrementa la cuenta de productos despachados
         this.totalProductosServidos++;
