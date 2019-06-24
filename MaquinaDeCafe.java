@@ -217,7 +217,7 @@ public class MaquinaDeCafe implements MaquinaDeEstados {
         //Verifico si el producto esta en el enum
         boolean prodValido=false;
         for( Producto prod: Producto.values() ){
-            if( prod.equals(seleccion) ){
+            if( prod.equals(selecciono) ){
                 prodValido=true;
             }
         }

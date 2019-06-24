@@ -18,6 +18,11 @@ public class MaquinaDeCafeTest
     private Silo silo1cafe;
     private Receta capu;
 
+    
+    
+    
+    
+
     /**
      * Default constructor for test class MaquinaDeCafeTest
      */
@@ -51,6 +56,8 @@ public class MaquinaDeCafeTest
         capu.agregarIngrediente(Ingrediente.CACAO, 20);
         capu.agregarIngrediente(Ingrediente.AGUA, 100);
         capu.agregarIngrediente(Ingrediente.AZUCAR, 3);
+        maquinaD1.getEstado();
+        maquinaD1.encender();
     }
 
     /**
